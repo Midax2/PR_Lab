@@ -1,0 +1,1 @@
+int countDivisors(int n);

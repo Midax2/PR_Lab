@@ -1,0 +1,1 @@
+int ifPrime(int n);

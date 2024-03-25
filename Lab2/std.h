@@ -1,0 +1,1 @@
+double std(double arr[], int n);
