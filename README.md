@@ -1,7 +1,7 @@
-Przetwarzanie rozproszone - Laboratorium 
+Laboratory on Distributed Processing
 
-Laboratorium 1 task: Create double linked list in C and allow user to add element to the list or delete it by the index (starting from 0) via menu. Also print function should be implemented. Main purpose of this laboratorium is to learn how allocate and free memory in C.
+Laboratory 1 task: Create a doubly linked list in C and allow the user to add elements to the list or delete them by index (starting from 0) via a menu. Additionally, implement a print function. The main purpose of this laboratory is to learn memory allocation and deallocation in C.
 
-Laboratorium 2 task: Create 8 function in C doing some math calculations and create dynamic and static library in Linux with them.
+Laboratory 2 task: Create 8 functions in C to perform mathematical calculations and create dynamic and static libraries in Linux with them.
 
-Laboratorium 3 task: Create bash script and C programm which allow to start and do commands at the same time. Programm should stop when last command ends.
+Laboratory 3 task: Create a bash script and a C program that allow starting and executing commands simultaneously. The program should stop when the last command finishes.
