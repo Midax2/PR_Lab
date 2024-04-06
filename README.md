@@ -7,3 +7,4 @@ Laboratorium 2 task: Create 8 function in C doing some math calculations and cre
 Laboratorium 3 task: Create bash script and C programm which allow to start and do commands at the same time. Programm should stop when last command ends.
 
 Laboratorium 4 task: Implementation of a console application with support for creating, deleting, and listing child processes, which are console applications enabling the creation of new threads executing certain computations and assigned priorities. Threads can be deleted, their priorities can be modified, and threads can be listed along with their priorities.
+
