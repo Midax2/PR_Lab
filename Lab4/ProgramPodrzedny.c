@@ -13,11 +13,7 @@ ThreadInfo threads[MAX_THREADS];
 int num_threads = 0;
 
 DWORD WINAPI new_thread(LPVOID lpParam) {
-    int n;
-    
-    printf("Enter a number to calculate its factorial: ");
-    scanf("%d", &n);
-    
+    int n = *(int*)lpParam;
     int result = 1;
     
     for (int i = 1; i <= n; ++i) {
@@ -33,9 +29,11 @@ int createThread(int priority) {
         printf("Maximum number of threads reached.\n");
         return 1;
     }
-
+	int n;
+    printf("Enter a number to calculate its factorial: ");
+    scanf("%d", &n);
     HANDLE threadHandle;
-    threadHandle = CreateThread(NULL, 0, new_thread, NULL, 0, NULL);
+    threadHandle = CreateThread(NULL, 0, new_thread, &n, 0, NULL);
     if (threadHandle == NULL) {
         printf("Failed to create thread. Error code: %d\n", GetLastError());
         return 1;
