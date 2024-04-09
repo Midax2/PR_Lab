@@ -9,43 +9,12 @@ typedef struct {
     int priority;
 } ThreadInfo;
 
+typedef struct {
+	int n;
+} Params;
+
 ThreadInfo threads[MAX_THREADS];
 int num_threads = 0;
-
-DWORD WINAPI new_thread(LPVOID lpParam) {
-    int n = *(int*)lpParam;
-    int result = 1;
-    
-    for (int i = 1; i <= n; ++i) {
-        result *= i;
-    }
-    Sleep(60000);
-	printf("Factorial of %d is %d\n", n, result);
-    return 0;
-}
-
-int createThread(int priority) {
-    if (num_threads >= MAX_THREADS) {
-        printf("Maximum number of threads reached.\n");
-        return 1;
-    }
-	int n;
-    printf("Enter a number to calculate its factorial: ");
-    scanf("%d", &n);
-    HANDLE threadHandle;
-    threadHandle = CreateThread(NULL, 0, new_thread, &n, 0, NULL);
-    if (threadHandle == NULL) {
-        printf("Failed to create thread. Error code: %d\n", GetLastError());
-        return 1;
-    }
-
-    SetThreadPriority(threadHandle, priority);
-    threads[num_threads].handle = threadHandle;
-    threads[num_threads].priority = priority;
-    num_threads++;
-    printf("New thread created successfully.\n");
-    return 0;
-}
 
 void removeThread(int threadIndex) {
     if (threadIndex < 0 || threadIndex >= num_threads) {
@@ -61,6 +30,45 @@ void removeThread(int threadIndex) {
     printf("Thread removed successfully.\n");
 }
 
+DWORD WINAPI new_thread(LPVOID lpParam) {
+	int* ne = (int*)lpParam;
+	int n = ne[0];
+    int result = 1;
+    
+    for (int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+	Sleep(n * 1000);
+	printf("\nFactorial of %d is %d\n", n, result);
+    return 0;
+}
+
+int createThread(int priority) {
+    if (num_threads >= MAX_THREADS) {
+        printf("Maximum number of threads reached.\n");
+        return 1;
+    }
+	int n[2] = { 1 };
+	int ne;
+    printf("Enter a number to calculate its factorial: ");
+    scanf("%d", &ne);
+	n[0] = ne;
+	n[1] = num_threads;
+    HANDLE threadHandle;
+    threadHandle = CreateThread(NULL, 0, new_thread, n, 0, NULL);
+    if (threadHandle == NULL) {
+        printf("Failed to create thread. Error code: %d\n", (int)GetLastError());
+        return 1;
+    }
+
+    SetThreadPriority(threadHandle, priority);
+    threads[num_threads].handle = threadHandle;
+    threads[num_threads].priority = priority;
+    num_threads++;
+    printf("New thread created successfully.\n");
+    return 0;
+}
+
 void changePriority(int threadIndex, int newPriority) {
     if (threadIndex < 0 || threadIndex >= num_threads) {
         printf("Invalid thread index.\n");
@@ -68,7 +76,7 @@ void changePriority(int threadIndex, int newPriority) {
     }
 
     if (!SetThreadPriority(threads[threadIndex].handle, newPriority)) {
-        printf("Failed to change thread priority. Error code: %d\n", GetLastError());
+        printf("Failed to change thread priority. Error code: %d\n", (int)GetLastError());
         return;
     }
 
