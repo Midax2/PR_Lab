@@ -1,0 +1,14 @@
+Buffer A: {}
+Buffer B: {}
+Buffer A: {A2=3, A0=1}
+Buffer B: {B0=7}
+Buffer A: {A0=3}
+Buffer B: {B0=7}
+Buffer A: {A2=6}
+Buffer B: {B0=6}
+Buffer A: {A1=6}
+Buffer B: {B2=10}
+Buffer A: {A2=2, A0=4}
+Buffer B: {B1=9}
+Buffer A: {A2=2, A0=4}
+Buffer B: {B1=5}
